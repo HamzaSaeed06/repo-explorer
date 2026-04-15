@@ -21,7 +21,7 @@ const Footer = () => (
             </button>
           </div>
           <div className="flex gap-3">
-            {[Facebook, Instagram, Twitter, Youtube].map((Icon, i) => (
+            {[Globe, MessageCircle, Share2, Video].map((Icon, i) => (
               <button key={i} className="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
                 <Icon className="w-4 h-4" />
               </button>

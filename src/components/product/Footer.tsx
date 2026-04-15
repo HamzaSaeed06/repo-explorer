@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Youtube, Mail } from "lucide-react";
+import { Globe, MessageCircle, Share2, Video, Mail } from "lucide-react";
 
 const Footer = () => (
   <footer className="bg-muted border-t border-border mt-8">

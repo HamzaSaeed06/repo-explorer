@@ -1,16 +1,38 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import TopBanner from "@/components/product/TopBanner";
+import Header from "@/components/product/Header";
+import Breadcrumb from "@/components/product/Breadcrumb";
+import ProductImageGallery from "@/components/product/ProductImageGallery";
+import ProductInfo from "@/components/product/ProductInfo";
+import ProductSection from "@/components/product/ProductSection";
+import ReviewSection from "@/components/product/ReviewSection";
+import Footer from "@/components/product/Footer";
+import { mainProduct, relatedProducts, popularProducts } from "@/data/products";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
-  return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
-  );
-};
+const Index = () => (
+  <div className="min-h-screen bg-background overflow-x-hidden">
+    <TopBanner />
+    <Header />
+    <Breadcrumb />
 
-const Index = PlaceholderIndex;
+    {/* Product Detail */}
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+        <ProductImageGallery images={mainProduct.images} />
+        <ProductInfo product={mainProduct} />
+      </div>
+    </main>
+
+    {/* Related Products */}
+    <ProductSection title="Related Product" products={relatedProducts} />
+
+    {/* Reviews */}
+    <ReviewSection product={mainProduct} />
+
+    {/* Popular This Week */}
+    <ProductSection title="Popular this week" products={popularProducts} />
+
+    <Footer />
+  </div>
+);
 
 export default Index;

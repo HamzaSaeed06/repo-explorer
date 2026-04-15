@@ -175,3 +175,29 @@ export const subscribeToUserOrders = (
     callback(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Order)));
   });
 };
+
+// ─── Purchase Verification ────────────────────────────────────────────────────
+
+/**
+ * Checks if a user has a delivered or confirmed order containing a given product.
+ * Used to gate the review form — only verified buyers can post a review.
+ */
+export const hasUserPurchasedProduct = async (
+  userId: string,
+  productId: string
+): Promise<boolean> => {
+  try {
+    const q = query(
+      collection(db, ORDERS),
+      where('userId', '==', userId),
+      where('status', 'in', ['delivered', 'confirmed', 'shipped', 'processing'])
+    );
+    const snap = await getDocs(q);
+    return snap.docs.some((d) => {
+      const order = d.data() as Order;
+      return order.items?.some((item) => item.productId === productId);
+    });
+  } catch {
+    return false;
+  }
+};

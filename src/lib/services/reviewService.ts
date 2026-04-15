@@ -52,6 +52,23 @@ export const addReview = async (
   return docRef.id;
 };
 
+export const hasUserReviewedProduct = async (
+  userId: string,
+  productId: string
+): Promise<boolean> => {
+  try {
+    const q = query(
+      collection(db, REVIEWS),
+      where('productId', '==', productId),
+      where('userId', '==', userId)
+    );
+    const snap = await getDocs(q);
+    return !snap.empty;
+  } catch {
+    return false;
+  }
+};
+
 export const markReviewHelpful = async (reviewId: string): Promise<void> => {
   try {
     await updateDoc(doc(db, REVIEWS, reviewId), { helpful: increment(1) });

@@ -173,16 +173,21 @@ export const getRelatedProducts = async (
 };
 
 export const createProduct = async (
-  data: Partial<Product>,
-  imageUrls: string[]
+  data: Partial<Product>
 ): Promise<string> => {
   const docRef = await addDoc(collection(db, PRODUCTS), {
-    ...data,
-    images: imageUrls,
+    isActive: true,
+    isFeatured: false,
+    isFlashSale: false,
     views: 0,
     sold: 0,
     rating: 0,
     reviewCount: 0,
+    stock: 0,
+    images: [],
+    attributes: [],
+    variants: [],
+    ...data,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   });

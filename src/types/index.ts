@@ -39,9 +39,11 @@ export interface Product {
   brand?: string;
   slug: string;
   description: string;
+  material?: string; // New field
   price: number;
   comparePrice?: number;
   images: string[];
+  colorImages?: Record<string, string[]>; // New field for color-specific galleries
   videoUrl?: string;
   category: string;
   subcategory: string;
@@ -64,6 +66,8 @@ export interface Product {
   hasVariants: boolean;
   attributes?: ProductAttribute[];
   variants?: ProductVariant[];
+  sizeGuide?: Record<string, string>; // New field for size measurements/rules
+  specifications?: { key: string; value: string }[]; // New field for technical specs
   createdAt: Date;
   updatedAt: Date;
 }

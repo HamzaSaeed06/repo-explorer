@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export function ProductGallery({
@@ -15,6 +15,11 @@ export function ProductGallery({
   discount: number;
 }) {
   const [activeImage, setActiveImage] = useState(0);
+
+  // Reset active image when image set changes (e.g., color selection)
+  useEffect(() => {
+    setActiveImage(0);
+  }, [images]);
 
   // Default fallback if no images provided
   const validImages = images.length > 0 ? images : ['https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800'];
